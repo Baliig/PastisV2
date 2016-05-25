@@ -37,13 +37,15 @@ public class PastisController {
 
 	@FXML
 	public void initializer() {
-
+		
 	}
+	
+	
 
 	@FXML
 	public void handleGenerateBtnAction(ActionEvent event) {
 		checkOption();
-		// Change all paramètre
+		// Change all paramÃ¨tre
 		if(!sizePassword.getText().isEmpty()){
 			model.setLength(Integer.valueOf(sizePassword.getText()));
 		}
@@ -56,12 +58,12 @@ public class PastisController {
 		String passwordGen =  model.generateNewPassword();
 		password.setText(passwordGen);
 	}
-	//Cette méthode à pour but de vérifier qu'un mot de passe soit générable.
-	//Si aucune option n'est sélectionner le mot de passe ne peut être générer.
+	//Cette mÃ©thode Ã  pour but de vÃ©rifier qu'un mot de passe soit gÃ©nÃ©rable.
+	//Si aucune option n'est sÃ©lectionner le mot de passe ne peut Ãªtre gÃ©nÃ©rer.
 	private void checkOption(){
 		if(!checkMaj.isSelected() && !checkMin.isSelected() && !checkSpecial.isSelected() && !checkNb.isSelected()){
-			System.out.println("Génération de mot de passe impossible");
-		}else if (checkPrononcable.isSelected() && checkNb.isSelected() && checkSpecial.isSelected()){
+			System.out.println("GÃ©nÃ©ration de mot de passe impossible");
+		}else if (checkPrononcable.isSelected() && !checkNb.isSelected() && !checkSpecial.isSelected()){
 			System.out.println("Pour que le mot de passe soit prononcable il ne faut pas cocher Nb et Special");
 		}
 	}

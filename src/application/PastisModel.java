@@ -2,6 +2,8 @@ package application;
 
 import java.util.Random;
 
+import javafx.beans.property.IntegerProperty;
+
 public class PastisModel implements IPastisModel {
 
 	private static final int LENGTH_PASSWORD = 12;
@@ -97,9 +99,23 @@ public class PastisModel implements IPastisModel {
 	@Override
 	public String generateNewPassword() {
 		String passwordGen = null;
-		// Générer une caractères aléatoire autant de fois pour avoir la longeur
+		// GÃ©nÃ©rer une caractÃ¨res alÃ©atoire autant de fois pour avoir la longeur
 		// voulu:
 		for (int i = 0; i < lengthPass; i++) {
+			
+			if(ambigus){
+				//Faire un liste spÃ©cial sans les 0o lI1
+				
+			}
+			if(ucLetter){
+				
+			}
+			if(lcLetter){
+				
+			}
+			if(digits){
+				
+			}
 			
 		}
 		return passwordGen;
@@ -112,12 +128,5 @@ public class PastisModel implements IPastisModel {
 		result = String.valueOf(constant.charAt(index));
 		return result;
 	}
-
-	/*public int getRandomNumber() {
-		int result = 0;
-		Random rdm = new Random();
-		result = rdm.nextInt(9);
-		return result;
-	}*/
 
 }
