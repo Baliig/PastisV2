@@ -8,6 +8,13 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 public class PastisModel {
+	
+	String  UC_CONSONANTS = "BCDFGHJKLMNPQRSTVWXZ";
+	String  LC_CONSONANTS = "bcdfghjklmnpqrstvwxz";
+	String  UC_VOWELS     = "AEIOUY";
+	String  LC_VOWELS     = "aeiouy";
+	String  NUMBER		  = "0123456789";
+	String  SYMBOLS       = "@$#%-.!&,:?<>[]/(){}+_^~";
 
 	private static final int LENGTH_PASSWORD = 12;
 
@@ -20,7 +27,6 @@ public class PastisModel {
 	private final BooleanProperty ambigus = new SimpleBooleanProperty();
 
 	public PastisModel() {
-		this.lengthPass.set(String.valueOf(LENGTH_PASSWORD));
 		this.ucLetter.set(false);
 		this.lcLetter.set(false);
 		this.digits.set(false);
@@ -30,10 +36,42 @@ public class PastisModel {
 	}
 
 	public String generateNewPassword() {
-		String passwordGen = null;
-		// Générer une caractères aléatoire autant de fois pour avoir la longeur
-		// voulu:
-		System.out.println(ambigus.getValue());
+		String passwordGen = "";
+		String list = null;
+		if(lengthPass.get().isEmpty()){
+			lengthPass.set("12");
+		}
+		int passwordLength = Integer.valueOf(lengthPass.get());
+		
+		if(pronounceable.get()){
+			
+		}
+		
+		if(ambigus.get()){
+			
+		}
+		if(ucLetter.get() || lcLetter.get() || digits.get() || symbole.get()){
+			if(ucLetter.get() == true){
+				list += UC_CONSONANTS;
+				list += UC_VOWELS;
+			}
+			if(lcLetter.get()){
+				list += LC_CONSONANTS;
+				list += LC_VOWELS;
+			}
+			if(digits.get()){
+				list += NUMBER;
+			}
+			if(symbole.get()){
+				list += SYMBOLS;
+			}
+			for (int i = 0; i < passwordLength; i++) {
+				Random rdm = new Random();
+				int nb = rdm.nextInt(list.length());
+				passwordGen += list.charAt(nb); 
+			}
+		}
+		
 		return passwordGen;
 	}
 

@@ -16,10 +16,10 @@ public class Main extends Application {
 		model = new PastisModel();
 		
 		try {
-			//AnchorPane root = FXMLLoader.load(getClass().getResource("ViewPastis.fxml"));
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("ViewPastis.fxml"));
 			AnchorPane root = loader.load();
 			ctrl = loader.getController();
+			model = new PastisModel();
 			ctrl.setModel(model);
 			// BorderPane root = new BorderPane();
 			ctrl.initializer();

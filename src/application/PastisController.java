@@ -68,7 +68,8 @@ public class PastisController {
 	public void handleGenerateBtnAction(ActionEvent event) {
 		initializer();
 		checkOption();
-		model.generateNewPassword();
+		String mdp = model.generateNewPassword();
+		password.setText(mdp);
 	}
 
 	// Cette méthode à pour but de vérifier qu'un mot de passe soit
