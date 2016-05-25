@@ -11,8 +11,6 @@ public class PastisController {
 	private PastisModel model;
 
 	public PastisController() {
-		model = new PastisModel();
-
 	}
 
 	@FXML
@@ -34,7 +32,7 @@ public class PastisController {
 	@FXML
 	private TextField password;
 
-	@FXML
+	
 	public void initializer() {
 		model.getLengthPass().bindBidirectional(sizePassword.textProperty());
 		model.getLcLetter().bind(checkMaj.selectedProperty());
@@ -61,5 +59,15 @@ public class PastisController {
 			System.out.println("Pour que le mot de passe soit prononcable il ne faut pas cocher Nb et Special");
 		}
 	}
+
+	public PastisModel getModel() {
+		return model;
+	}
+
+	public void setModel(PastisModel model) {
+		this.model = model;
+	}
+	
+	
 
 }

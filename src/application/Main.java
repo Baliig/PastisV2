@@ -9,20 +9,25 @@ import javafx.scene.layout.AnchorPane;
 public class Main extends Application {
 	
 	private PastisController ctrl;
+	private PastisModel model;
 	
 	@Override
 	public void start(Stage primaryStage) {
-		
-		ctrl = new PastisController();
+		model = new PastisModel();
 		
 		try {
-			AnchorPane root = FXMLLoader.load(getClass().getResource("ViewPastis.fxml"));
+			//AnchorPane root = FXMLLoader.load(getClass().getResource("ViewPastis.fxml"));
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("ViewPastis.fxml"));
+			AnchorPane root = loader.load();
+			ctrl = loader.getController();
+			ctrl.setModel(model);
 			// BorderPane root = new BorderPane();
+			ctrl.initializer();
 			Scene scene = new Scene(root, 800, 600);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.setScene(scene);
 			primaryStage.show();
-			//ctrl.initializer();
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
