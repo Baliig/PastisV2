@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextField;
 
 public class PastisController {
@@ -31,8 +32,9 @@ public class PastisController {
 	private Button bGenerate;
 	@FXML
 	private TextField password;
+	@FXML
+	private ProgressBar progressBar;
 
-	
 	public void initializer() {
 		model.getLengthPass().bindBidirectional(sizePassword.textProperty());
 		model.getLcLetter().bind(checkMaj.selectedProperty());
@@ -44,14 +46,35 @@ public class PastisController {
 	}
 
 	@FXML
+	public void handleClicOnCheckBox(ActionEvent event) {
+		double security = 0;
+		if (checkMaj.isSelected())
+			security += 20;
+		if (checkMin.isSelected())
+			security += 20;
+		if (checkNb.isSelected())
+			security += 20;
+		if (checkPrononcable.isSelected())
+			security -= 20;
+		if (checkSpecial.isSelected())
+			security += 20;
+		if (checkAmbigus.isSelected())
+			security -= 20;
+		System.out.println(security);
+		progressBar.setProgress(security / 100);
+	}
+
+	@FXML
 	public void handleGenerateBtnAction(ActionEvent event) {
 		initializer();
 		checkOption();
 		model.generateNewPassword();
 	}
 
-	// Cette méthode à pour but de vérifier qu'un mot de passe soit générable.
-	// Si aucune option n'est sélectionner le mot de passe ne peut être générer.
+	// Cette méthode à pour but de vérifier qu'un mot de passe soit
+	// générable.
+	// Si aucune option n'est sélectionner le mot de passe ne peut être
+	// générer.
 	private void checkOption() {
 		if (!checkMaj.isSelected() && !checkMin.isSelected() && !checkSpecial.isSelected() && !checkNb.isSelected()) {
 			System.out.println("Génération de mot de passe impossible");
@@ -67,7 +90,5 @@ public class PastisController {
 	public void setModel(PastisModel model) {
 		this.model = model;
 	}
-	
-	
 
 }
