@@ -14,6 +14,7 @@ public class Main extends Application {
 	public void start(Stage primaryStage) {
 		
 		ctrl = new PastisController();
+		
 		try {
 			AnchorPane root = FXMLLoader.load(getClass().getResource("ViewPastis.fxml"));
 			// BorderPane root = new BorderPane();
@@ -21,6 +22,7 @@ public class Main extends Application {
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.setScene(scene);
 			primaryStage.show();
+			//ctrl.initializer();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -2,122 +2,38 @@ package application;
 
 import java.util.Random;
 
-import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 
-public class PastisModel implements IPastisModel {
+public class PastisModel {
 
 	private static final int LENGTH_PASSWORD = 12;
 
-	private int lengthPass;
-	private boolean ucLetter;
-	private boolean lcLetter;
-	private boolean digits;
-	private boolean symbole;
-	private boolean pronounceable;
-	private boolean ambigus;
+	private StringProperty lengthPass = new SimpleStringProperty();
+	private final BooleanProperty ucLetter = new SimpleBooleanProperty();
+	private final BooleanProperty lcLetter = new SimpleBooleanProperty();
+	private final BooleanProperty digits = new SimpleBooleanProperty();
+	private final BooleanProperty symbole = new SimpleBooleanProperty();
+	private final BooleanProperty pronounceable = new SimpleBooleanProperty();
+	private final BooleanProperty ambigus = new SimpleBooleanProperty();
 
 	public PastisModel() {
-		this.lengthPass = LENGTH_PASSWORD;
-		this.ucLetter = false;
-		this.lcLetter = false;
-		this.digits = false;
-		this.symbole = false;
-		this.pronounceable = false;
-		this.ambigus = false;
+		this.lengthPass.set(String.valueOf(LENGTH_PASSWORD));
+		this.ucLetter.set(false);
+		this.lcLetter.set(false);
+		this.digits.set(false);
+		this.symbole.set(false);
+		this.pronounceable.set(false);
+		this.ambigus.set(false);
 	}
 
-	@Override
-	public int getLength() {
-		return lengthPass;
-	}
-
-	@Override
-	public void setLength(int length) {
-		lengthPass = length;
-	}
-
-	@Override
-	public boolean hasUcLetters() {
-		return ucLetter;
-	}
-
-	@Override
-	public void setUcLetters(boolean ucLetters) {
-		ucLetter = ucLetters;
-	}
-
-	@Override
-	public boolean hasLcLetters() {
-		return lcLetter;
-	}
-
-	@Override
-	public void setLcLetters(boolean lcLetters) {
-		lcLetter = lcLetters;
-	}
-
-	@Override
-	public boolean hasDigits() {
-		return digits;
-	}
-
-	@Override
-	public void setDigits(boolean digits) {
-		this.digits = digits;
-	}
-
-	@Override
-	public boolean hasSymbols() {
-		return symbole;
-	}
-
-	@Override
-	public void setSymbols(boolean symbols) {
-		symbole = symbols;
-	}
-
-	@Override
-	public boolean isPronounceable() {
-		return pronounceable;
-	}
-
-	@Override
-	public void setPronounceable(boolean pronounceable) {
-		this.pronounceable = pronounceable;
-	}
-
-	@Override
-	public boolean isUnambiguous() {
-		return ambigus;
-	}
-
-	@Override
-	public void setUnambiguous(boolean unambiguous) {
-		ambigus = unambiguous;
-	}
-
-	@Override
 	public String generateNewPassword() {
 		String passwordGen = null;
 		// Générer une caractères aléatoire autant de fois pour avoir la longeur
 		// voulu:
-		for (int i = 0; i < lengthPass; i++) {
-			
-			if(ambigus){
-				//Faire un liste spécial sans les 0o lI1
-				
-			}
-			if(ucLetter){
-				
-			}
-			if(lcLetter){
-				
-			}
-			if(digits){
-				
-			}
-			
-		}
+		System.out.println(ambigus.getValue());
 		return passwordGen;
 	}
 
@@ -127,6 +43,38 @@ public class PastisModel implements IPastisModel {
 		int index = rdm.nextInt(constant.length());
 		result = String.valueOf(constant.charAt(index));
 		return result;
+	}
+
+	public StringProperty getLengthPass() {
+		return lengthPass;
+	}
+
+	public void setLengthPass(StringProperty lengthPass) {
+		this.lengthPass = lengthPass;
+	}
+
+	public BooleanProperty getUcLetter() {
+		return ucLetter;
+	}
+
+	public BooleanProperty getLcLetter() {
+		return lcLetter;
+	}
+
+	public BooleanProperty getDigits() {
+		return digits;
+	}
+
+	public BooleanProperty getSymbole() {
+		return symbole;
+	}
+
+	public BooleanProperty getPronounceable() {
+		return pronounceable;
+	}
+
+	public BooleanProperty getAmbigus() {
+		return ambigus;
 	}
 
 }
