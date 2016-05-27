@@ -5,9 +5,11 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
+import javafx.scene.text.Text;
 
 public class PastisController {
 
@@ -36,6 +38,14 @@ public class PastisController {
 	private TextField password;
 	@FXML
 	private ProgressBar progressBar;
+	@FXML
+	private Button copy;
+	@FXML
+	private Label lSpecial;
+	@FXML
+	private Label lPrononcable;
+	@FXML
+	private Label lAmbigus;
 
 	public void initializer() {
 		model.getLengthPass().bindBidirectional(sizePassword.textProperty());
@@ -45,9 +55,9 @@ public class PastisController {
 		model.getSymbole().bind(checkSpecial.selectedProperty());
 		model.getPronounceable().bind(checkPrononcable.selectedProperty());
 		model.getAmbigus().bind(checkAmbigus.selectedProperty());
-		checkSpecial.setTooltip(new Tooltip("Exemple: @$#%-.!&"));
-		checkPrononcable.setTooltip(new Tooltip("Il faut avoir cocher majuscule et/ou minuscule et ne pas cocher les caractères spéciaux et nombres"));
-		checkAmbigus.setTooltip(new Tooltip("Exclu les: Il1 et 0O"));
+		lSpecial.setTooltip(new Tooltip("Exemple: @$#%-.!&"));
+		lPrononcable.setTooltip(new Tooltip("Il faut avoir cocher majuscule et/ou minuscule et ne pas cocher les caractères spéciaux et nombres"));
+		lAmbigus.setTooltip(new Tooltip("Exclu les: Il1 et 0O"));
 	}
 
 	@FXML
