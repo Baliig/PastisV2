@@ -2,10 +2,12 @@ package application;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 
 public class PastisController {
 
@@ -54,8 +56,17 @@ public class PastisController {
 			security += 20;
 		if (checkNb.isSelected())
 			security += 20;
-		if (checkPrononcable.isSelected())
+		if (checkPrononcable.isSelected()) {
 			security -= 20;
+			checkNb.setDisable(true);
+			checkSpecial.setDisable(true);
+			checkSpecial.setSelected(false);
+			checkNb.setSelected(false);
+		}
+		if (!checkPrononcable.isSelected()) {
+			checkNb.setDisable(false);
+			checkSpecial.setDisable(false);
+		}
 		if (checkSpecial.isSelected())
 			security += 20;
 		if (checkAmbigus.isSelected())
@@ -81,10 +92,15 @@ public class PastisController {
 	// Si aucune option n'est sélectionner le mot de passe ne peut être
 	// générer.
 	private void checkOption() {
+		Alert dialog = new Alert(AlertType.WARNING);
+		dialog.setTitle("Pastis");
+		dialog.setHeaderText("Pastis");
 		if (!checkMaj.isSelected() && !checkMin.isSelected() && !checkSpecial.isSelected() && !checkNb.isSelected()) {
-			System.out.println("Génération de mot de passe impossible");
-		} else if (checkPrononcable.isSelected() && !checkNb.isSelected() && !checkSpecial.isSelected()) {
-			System.out.println("Pour que le mot de passe soit prononcable il ne faut pas cocher Nb et Special");
+			dialog.setContentText("G�n�ration impossible \n" + "Cocher au moins une case");
+			dialog.showAndWait();
+		} else if (checkPrononcable.isSelected() && checkNb.isSelected() || checkSpecial.isSelected()) {
+			dialog.setContentText("Pour que le mot de passe soit prononcable il ne faut pas cocher Nb et Special");
+			dialog.showAndWait();
 		}
 	}
 
