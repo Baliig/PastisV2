@@ -13,7 +13,7 @@ public class PastisModel {
 	String LC_CONSONANTS = "bcdfghjklmnpqrstvwxz";
 	String UC_CONSONANTS_NOT_AMBIGU = "BCDFGHJKLMNPQRSTVWXZAEUY";
 	String LC_CONSONANTS_NOT_AMBIGU = "bcdfghjkmnpqrstvwxzaeiuy";
-	String NUMBER_NOT_AMBIGU = "123456789";
+	String NUMBER_NOT_AMBIGU = "23456789";
 	String UC_VOWELS = "AEIOUY";
 	String LC_VOWELS = "aeiouy";
 	String NUMBER = "0123456789";

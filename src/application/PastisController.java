@@ -7,7 +7,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Tooltip;
 
 public class PastisController {
 
@@ -45,6 +45,9 @@ public class PastisController {
 		model.getSymbole().bind(checkSpecial.selectedProperty());
 		model.getPronounceable().bind(checkPrononcable.selectedProperty());
 		model.getAmbigus().bind(checkAmbigus.selectedProperty());
+		checkSpecial.setTooltip(new Tooltip("Exemple: @$#%-.!&"));
+		checkPrononcable.setTooltip(new Tooltip("Il faut avoir cocher majuscule et/ou minuscule et ne pas cocher les caractères spéciaux et nombres"));
+		checkAmbigus.setTooltip(new Tooltip("Exclu les: Il1 et 0O"));
 	}
 
 	@FXML
