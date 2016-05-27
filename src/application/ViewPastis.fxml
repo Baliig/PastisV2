@@ -164,7 +164,7 @@
                         <Insets left="40.0" top="20.0" />
                      </HBox.margin>
                   </Button>
-                  <Button fx:id="copy" mnemonicParsing="false" prefHeight="45.0" prefWidth="95.0" text="Copier">
+                  <Button fx:id="copy" mnemonicParsing="false" onAction="#handleCopyBtnAction" prefHeight="45.0" prefWidth="95.0" text="Copier">
                      <HBox.margin>
                         <Insets left="40.0" top="20.0" />
                      </HBox.margin>

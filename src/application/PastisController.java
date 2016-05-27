@@ -8,6 +8,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
+import javafx.scene.input.Clipboard;
+import javafx.scene.input.ClipboardContent;
 import javafx.scene.text.Text;
 
 public class PastisController {
@@ -97,6 +99,15 @@ public class PastisController {
 			System.out.println("Pour que le mot de passe soit prononcable il ne faut pas cocher Nb et Special");
 		}
 	}
+	
+	@FXML
+	public void handleCopyBtnAction(ActionEvent event) {
+		final Clipboard clipboard = Clipboard.getSystemClipboard();
+		final ClipboardContent cbContent = new ClipboardContent();
+		cbContent.putString(password.getText());
+		clipboard.setContent(cbContent);
+	}
+	
 
 	public PastisModel getModel() {
 		return model;
