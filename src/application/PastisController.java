@@ -57,7 +57,8 @@ public class PastisController {
 		model.getPronounceable().bind(checkPrononcable.selectedProperty());
 		model.getAmbigus().bind(checkAmbigus.selectedProperty());
 		lSpecial.setTooltip(new Tooltip("Exemple: @$#%-.!&"));
-		lPrononcable.setTooltip(new Tooltip("Il faut avoir cocher majuscule et/ou minuscule et ne pas cocher les caractères spéciaux et nombres"));
+		lPrononcable.setTooltip(new Tooltip(
+				"Il faut avoir cocher majuscule et/ou minuscule et ne pas cocher les caractères spéciaux et nombres"));
 		lAmbigus.setTooltip(new Tooltip("Exclu les: Il1 et 0O"));
 	}
 
@@ -96,26 +97,31 @@ public class PastisController {
 	@FXML
 	public void handleGenerateBtnAction(ActionEvent event) {
 		initializer();
-		checkOption();
-		String mdp = model.generateNewPassword();
-		password.setText(mdp);
+		if (checkOption()) {
+			String mdp = model.generateNewPassword();
+			password.setText(mdp);
+		}
 	}
 
 	// Cette méthode à pour but de vérifier qu'un mot de passe soit
 	// générable.
 	// Si aucune option n'est sélectionner le mot de passe ne peut être
 	// générer.
-	private void checkOption() {
+	private boolean checkOption() {
+		boolean ok = true;
 		Alert dialog = new Alert(AlertType.WARNING);
 		dialog.setTitle("Pastis");
 		dialog.setHeaderText("Pastis");
 		if (!checkMaj.isSelected() && !checkMin.isSelected() && !checkSpecial.isSelected() && !checkNb.isSelected()) {
+			ok = false;
 			dialog.setContentText("G�n�ration impossible \n" + "Cocher au moins une case");
 			dialog.showAndWait();
 		} else if (checkPrononcable.isSelected() && checkNb.isSelected() || checkSpecial.isSelected()) {
+			ok = false;
 			dialog.setContentText("Pour que le mot de passe soit prononcable il ne faut pas cocher Nb et Special");
 			dialog.showAndWait();
 		}
+		return ok;
 	}
 
 	public PastisModel getModel() {
