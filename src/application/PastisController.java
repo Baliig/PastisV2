@@ -61,6 +61,10 @@ public class PastisController {
 		if (checkAmbigus.isSelected())
 			security -= 20;
 		System.out.println(security);
+		if (security < 0)
+			security = 0;
+		if (security > 100)
+			security = 100;
 		progressBar.setProgress(security / 100);
 	}
 
