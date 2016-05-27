@@ -40,8 +40,8 @@ public class PastisModel {
 
 	public String generateNewPassword() {
 		String passwordGen = "";
-		String list = null;
-		String list2 = null;
+		String list = "";
+		String list2 = "";
 		if (lengthPass.get().isEmpty()) {
 			lengthPass.set("12");
 		}
@@ -61,12 +61,11 @@ public class PastisModel {
 				int nb = 0;
 				if(j%2 == 0){
 					nb = rdm.nextInt(list.length());
-					passwordGen += list.charAt(nb);
+					passwordGen += list.charAt(nb);					
 				}else{
 					nb = rdm.nextInt(list2.length());
 					passwordGen += list2.charAt(nb);
 				}
-				
 			}
 			return passwordGen;
 		}
