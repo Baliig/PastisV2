@@ -21,7 +21,6 @@ public class Main extends Application {
 			ctrl = loader.getController();
 			model = new PastisModel();
 			ctrl.setModel(model);
-			// BorderPane root = new BorderPane();
 			ctrl.initializer();
 			Scene scene = new Scene(root, 800, 600);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
